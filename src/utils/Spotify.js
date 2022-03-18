@@ -1,5 +1,5 @@
 // TODO: Get Client ID from https://developer.spotify.com/dashboard/ and put it here
-const clientId = '17a9ed834fe34eadba66e031986bd075';
+const clientId = '70edd5f6e7e0427d9f7f3b7e232ea921';
 
 const redirectUri = 'http://localhost:3000/';
 const spotifyUrl = `https://accounts.spotify.com/authorize?response_type=token&scope=playlist-modify-public&client_id=${clientId}&redirect_uri=${redirectUri}`;
@@ -64,13 +64,13 @@ const Spotify = {
       if (playlistId) {
         const replacePlaylistTracksUrl = `https://api.spotify.com/v1/playlists/${playlistId}/tracks`;
         await fetch(replacePlaylistTracksUrl, {
-          method: 'PUT',
+          method: 'POST',
           headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${accessToken}`,
           },
           body: JSON.stringify({
-            uris: trackIds.map((id) => 'spotify:track:'.concat(id)),
+            uris: trackIds,
           }),
         });
       }
